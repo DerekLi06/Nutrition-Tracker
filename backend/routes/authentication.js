@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 const {Router} = require("express");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const authenticationRouter = Router();
-const UserM = require("../model/UserM");
+const UserM = require("../models/UserM");
 
 authenticationRouter.post("/register", async (req, res) => {
     const data = req.body;
@@ -19,7 +21,7 @@ authenticationRouter.post("/register", async (req, res) => {
 
 authenticationRouter.post("/login", async (req, res) => {
     const {email, password} = req.body;
-    const curUser = await UserM.findONe({email: data.email});
+    const curUser = await UserM.findOne({email: data.email});
     if (!curUser) {return res.status(400).send({message: "This User Doesn't Exist!"})}
     bycrpt.compare(password, curUser.password, function(err, valid) {
         if (err) {return res.status(400).send({message: "Error Message 400: A Problem Has Occured"});}
@@ -31,5 +33,5 @@ authenticationRouter.post("/login", async (req, res) => {
     });
 });
 
-
+module.exports = authenticationRouter;
     

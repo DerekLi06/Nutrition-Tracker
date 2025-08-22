@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy();
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const UserM = require("../models/UserM");
 
 passport.use(
@@ -9,14 +9,14 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "http://localhost:3000/auth/google/callback",
+            callbackURL: "http://localhost:5000/auth/google/callback",
             scope: ["profile", "email"],
             toCallBack: true,
         },
         async function (accessToken, refreshToken, profile, done) {
             const user = await UserM.findOne({email: profile.email});
             if (!user) {
-                const newU = UserM( 
+                const newU = new UserM( 
                     {
                         username: profile.displayName,
                         email: profile.email,
