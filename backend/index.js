@@ -2,8 +2,8 @@ require("dotenv").config();
 require("./config/googleoauth");
 
 const express = require("express");
-const passport = require("passport");
 const session = require("express-session");
+const passport = require("passport");
 const cors = require("cors");
 
 const connection = require("./config/database");
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: ["http://localhost:3000"],
+        origin: ["http://localhost:5173"],
         methods: "GET,POST,PUT,DELETE",
         credentials: true,
     })
@@ -94,9 +94,9 @@ app.use("/dinner", dinnerRouter);
 app.listen(5000, async () => {
     try {
         await connection;
-        console.log("connected successfully to DB");
-    } catch (error) {
-        console.log("Something went wrong" + error);
+        console.log("Successful Connection to MongoDB Atlas!");
+    } catch (err) {
+        console.log(err);
     }
     console.log("Server running at port 5000");
 });
