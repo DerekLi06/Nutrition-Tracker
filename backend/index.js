@@ -6,8 +6,13 @@ const passport = require("passport");
 const session = require("express-session");
 const cors = require("cors");
 
-const connection = require("./config/database")
-const authenticationRouter = require("./routes/authentication")
+const connection = require("./config/database");
+const foodRouter = require("./routes/food");
+const breakfastRouter = require("./routes/breakfast");
+const lunchRouter = require("./routes/lunch");
+const dinnerRouter = require("./routes/dinner");
+const snackRouter = require("./routes/snack");
+const authenticationRouter = require("./routes/authentication");
 const app = express();
 
 app.use(
@@ -41,17 +46,17 @@ app.get(
 app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-        // successRedirect: process.env.CLIENT_URL,
+        successRedirect: process.env.CLIENT_URL,
         failureRedirect: "/auth/google/failure",
     }),
-    (req, res) => {
-        res.redirect("/profile");
-    }
+    // (req, res) => {
+    //     res.redirect("/profile");
+    // }
 );
 
 app.get("/profile", (req, res) => {
     res.send(`Welcome ${req.user.displayName}`);
-});
+}); 
 
 app.get("/auth/google/failure", (req, res) => {
     res.send("Login Failed");
@@ -80,13 +85,11 @@ app.get("/logout", (req, res) => {
 });
 
 app.use("/auth", authenticationRouter);
-// app.use("/foods", foodsRouter);
-// app.use("/breakfast", breakfastRouter);
-// app.use("/lunch", lunchRouter);
-// app.use("/snack", snackRouter);
-// app.use("/dinner", dinnerRouter);
-// app.use("/exercise/cardio", cardioRouter);
-// app.use("/exercise/strength", strengthRouter);
+app.use("/foods", foodRouter);
+app.use("/breakfast", breakfastRouter);
+app.use("/lunch", lunchRouter);
+app.use("/snack", snackRouter);
+app.use("/dinner", dinnerRouter);
 
 app.listen(5000, async () => {
     try {

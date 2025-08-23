@@ -21,4 +21,27 @@ breakfastRouter.get("/", async (request, result) => {
     } catch (err) {
         return result.status(400).send({message: err});
     }
-})
+});
+
+breakfastRouter.patch("/:idBreakfast", async (request, result) => {
+    try {
+        const {idBreakfast} = request.params;
+        const body = request.body
+        await BreakfastM.deleteOne({ _id: idBreakfast}, {$set: body})
+        return result.status(200).send({message: "Breakfast Updated!"});
+    } catch (err) {
+        return result.status(400).send({message: err});
+    }
+});
+
+breakfastRouter.patch("/:idBreakfast", async (request, result) => {
+    try {
+        const {idBreakfast} = request.params;
+        await BreakfastM.deleteOne({ _id: idBreakfast})
+        return result.status(200).send({message: "Breakfast Updated!"});
+    } catch (err) {
+        return result.status(400).send({message: err});
+    }
+});
+
+module.exports = breakfastRouter;

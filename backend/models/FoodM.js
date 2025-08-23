@@ -8,8 +8,8 @@ const FoodMSchema = new Schema(
         servingsPer: {type: String},
         calories: {type: String, required: true},
         fat: {type: String},
-        protein: {type, String},
-        carbs: {type, String},
+        protein: {type: String},
+        carbs: {type: String},
     }
 )
 

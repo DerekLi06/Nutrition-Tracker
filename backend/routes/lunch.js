@@ -1,12 +1,12 @@
 const {Router} = require("express");
 const lunchRouter = Router();
 
-const lunchM = require("../models/LunchM");
+const LunchM = require("../models/LunchM");
 
 lunchRouter.post("/create", async (request, result) => {
     try {
         const data = request.body;
-        const lunch = new BreakfastM(data);
+        const lunch = new LunchM(data);
         await lunch.save();
         return result.status(200).send({message: "Lunch Item Saved to Database!"});
     } catch (err) {
@@ -27,7 +27,7 @@ lunchRouter.patch("/:idLunch", async (request, result) => {
     try {
         const {idLunch} = request.params;
         const body = request.body
-        await LunchfastM.deleteOne({ _id: idLunch}, {$set: body})
+        await LunchM.deleteOne({ _id: idLunch}, {$set: body})
         return result.status(200).send({message: "Lunch Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});
@@ -37,7 +37,7 @@ lunchRouter.patch("/:idLunch", async (request, result) => {
 lunchRouter.patch("/:idLunch", async (request, result) => {
     try {
         const {idLunch} = request.params;
-        await LunchfastM.deleteOne({ _id: idLunch})
+        await LunchM.deleteOne({ _id: idLunch})
         return result.status(200).send({message: "Lunch Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});
