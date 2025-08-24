@@ -1,13 +1,8 @@
-import {
-	legacy_createStore,
-	applyMiddleware,
-	combineReducers,
-	compose,
-} from "redux";
+import {legacy_createStore, applyMiddleware, combineReducers, compose} from "redux";
 import thunk from "redux-thunk";
-import registrationReducer from "./auth/register/reducerRegister";
-import authenticationReducer from "./auth/login/reducerLogin";
-import {reducer as appReducer} from "./app/reducer"
+import registrationReducer from "./authentication/registerReducer";
+import authenticationReducer from "./authentication/loginReducer";
+import {reducer as appReducer} from "./reducer"
 
 const rootReducer = combineReducers({
 	register: registrationReducer,

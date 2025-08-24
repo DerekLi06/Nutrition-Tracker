@@ -14,21 +14,21 @@ export const reducer = (state = initState, {type, payload}) => {
     case types.ADD_BREAKFAST_REQUEST: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     }
 
     case types.ADD_BREAKFAST_SUCCESS: {
       return {
         ...state,
-        isLoading: false,
+        isLoading: false
       };
     }
 
     case types.GET_BREAKFAST_REQUEST: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     }
 
@@ -36,14 +36,14 @@ export const reducer = (state = initState, {type, payload}) => {
       return {
         ...state,
         isLoading: false,
-        breakfast: payload,
+        breakfast: payload
       };
     }
 
     case types.GET_LUNCH_REQUEST: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     }
 
@@ -51,14 +51,14 @@ export const reducer = (state = initState, {type, payload}) => {
       return {
         ...state,
         isLoading: false,
-        lunch: payload,
+        lunch: payload
       };
     }
 
     case types.GET_DINNER_REQUEST: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     }
 
@@ -66,14 +66,14 @@ export const reducer = (state = initState, {type, payload}) => {
       return {
         ...state,
         isLoading: false,
-        dinner: payload,
+        dinner: payload
       };
     }
 
     case types.GET_SNACK_REQUEST: {
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
     }
 
@@ -81,7 +81,7 @@ export const reducer = (state = initState, {type, payload}) => {
       return {
         ...state,
         isLoading: false,
-        snack: payload,
+        snack: payload
       };
     }
 
