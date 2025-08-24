@@ -14,7 +14,7 @@ export const registerAPI = (creds) => async (dispatch) => {
     };
 
     try {
-        const result = await axios.post(`${import.meta.env.CLIENT_URL}/auth/register`, data, {headers: headers});
+        const result = await axios.post(`${import.meta.env.VITE_CLIENT_URL}/auth/register`, data, {headers: headers});
         dispatch ({type: REGISTER_SUCCESS, payload: result.data});
     } catch (err) {
         dispatch({type: REGISTER_FAILURE});
