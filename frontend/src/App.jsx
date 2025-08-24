@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
 
 function App() {
-
   return (
     <>
+      <button>Create New Contact</button>
     </>
-  )
+  );
 }
 
-export default App
- 
+export default App;
+
