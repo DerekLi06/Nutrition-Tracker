@@ -5,8 +5,19 @@ export const registerAPI = (creds) => async (dispatch) => {
     dispatch({types: REGISTER_LOADING});
 
     let data = {
+        username: creds.username,
         email: creds.email,
-        password: creds.passwords
+        password: creds.passwords,
+        gender: creds.gender,
+        age: creds.age,
+        height: creds.height,
+        weight: creds.weight,
+        activityLevel: creds.activityLevel,
+        country: creds.country,
+        zipcode: creds.zipcode,
+        weightGoal: creds.weightGoal,
+        maintenceCalories: creds.gender == "male" ? (Math.round((10 * parseInt(creds.weight) + 6.25 * parseInt(creds.height) - 5 * parseInt(creds.age) + 5) * parseFloat(creds.activityLevel))).toString() : (Math.round((10 * parseInt(creds.weight) + 6.25 * parseInt(creds.height) - 5 * parseInt(creds.age) - 161) * parseFloat(creds.activityLevel))).toString()
+
     }
     data = JSON.stringify(data);
     const headers = {

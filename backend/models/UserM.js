@@ -12,7 +12,8 @@ const UserMSchema = new Schema(
         activityLevel: {type: String},
         country: {type: String},
         zipcode: {type: String},
-        weightGoal: {type: String}
+        weightGoal: {type: String},
+        maintenceCalories: {type: String}
     }
 )
 
