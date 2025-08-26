@@ -115,8 +115,8 @@ const Signup = () => {
         ...formData,
         maintenanceCalories: maintenanceCalories.toString(),
       }
-
       dispatch(registerAPI(userData))
+      window.location.href = "/signupCongrats"
     }
   }
 
@@ -130,7 +130,7 @@ const Signup = () => {
       <header className="header">
         <div className="nav-container">
           <div className="logo">
-            <h2>NutriTrack</h2>
+            <h2>Nutrition Analytics</h2>
           </div>
           <nav className="nav-buttons">
             <button className="btn-secondary" onClick={handleLogin}>

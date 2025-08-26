@@ -21,7 +21,7 @@ const registrationReducer = (state = initState, {type, payload}) => {
             };
         };
         case REGISTER_FAILURE: {
-            alert("Registration Failed!")
+            alert("Registration Failed! Check your email and password requirements!")
             return {...state, error: true, loading: false, isRegistered: false};
         };
         default:
