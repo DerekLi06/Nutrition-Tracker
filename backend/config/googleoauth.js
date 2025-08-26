@@ -14,11 +14,12 @@ passport.use(
             toCallBack: true,
         },
         async function (accessToken, refreshToken, profile, done) {
-            const user = await UserM.findOne({email: profile.email});
+            const user = await UserM.findOne({email: profile.emails[0].value});
+            console.log("Google profile:", profile);
             if (!user) {
                 const newU = new UserM( 
                     {
-                        username: profile.displayName,
+                        // username: profile.displayName,
                         email: profile.email,
                     }
                 );

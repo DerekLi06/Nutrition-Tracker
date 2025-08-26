@@ -23,9 +23,9 @@ authenticationRouter.post("/register", async (req, res) => {
 
 authenticationRouter.post("/login", async (req, res) => {
     const {email, password} = req.body;
-    const curUser = await UserM.findOne({email: data.email});
+    const curUser = await UserM.findOne({email});
     if (!curUser) {return res.status(400).send({message: "This User Doesn't Exist!"})}
-    bycrpt.compare(password, curUser.password, function(err, valid) {
+    bcrypt.compare(password, curUser.password, function(err, valid) {
         if (err) {return res.status(400).send({message: "Error Message 400: A Problem Has Occured"});}
         if (!valid) {return res.status(400).send({message: "Invalid Username or Password! Try Again!"});}
         const token = jwt.sign({
