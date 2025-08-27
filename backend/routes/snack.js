@@ -6,7 +6,8 @@ const SnackM = require("../models/SnackM");
 snackRouter.post("/create", async (request, result) => {
     try {
         const data = request.body;
-        const snack = new SnackM(data);
+        const {userId} = request.body;
+        const snack = new SnackM(...data, userId);
         await snack.save();
         return result.status(200).send({message: "Snack Item Saved to Database!"});
     } catch (err) {
@@ -16,18 +17,20 @@ snackRouter.post("/create", async (request, result) => {
 
 snackRouter.get("/", async (request, result) => {
     try {
-        const snacks = await SnackM.find();
+        const {userId} = request.body;
+        const snacks = await SnackM.find({userId});
         return result.status(200).send(snacks)
     } catch (err) {
         return result.status(400).send({message: err});
     }
 });
 
-snackRouter.patch("/:idSnack", async (request, result) => {
+snackRouter.patch("/:snackId", async (request, result) => {
     try {
-        const {idSnack} = request.params;
+        const {snackId} = request.params;
         const body = request.body
-        await SnackM.deleteOne({ _id: idSnack}, {$set: body})
+        const {userId} = request.body;
+        await SnackM.deleteOne({_id: snackId, userId: userId}, {$set: body})
         return result.status(200).send({message: "Snack Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});
@@ -37,7 +40,8 @@ snackRouter.patch("/:idSnack", async (request, result) => {
 snackRouter.patch("/:idSnack", async (request, result) => {
     try {
         const {idSnack} = request.params;
-        await SnackM.deleteOne({ _id: idSnack})
+        const {userId} = request.body;
+        await SnackM.deleteOne({_id: idSnack, userId: userId})
         return result.status(200).send({message: "Snack Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});

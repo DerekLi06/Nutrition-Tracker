@@ -6,7 +6,8 @@ const LunchM = require("../models/LunchM");
 lunchRouter.post("/create", async (request, result) => {
     try {
         const data = request.body;
-        const lunch = new LunchM(data);
+        const {userId} = request.body;
+        const lunch = new LunchM(...data, userId);
         await lunch.save();
         return result.status(200).send({message: "Lunch Item Saved to Database!"});
     } catch (err) {
@@ -16,28 +17,31 @@ lunchRouter.post("/create", async (request, result) => {
 
 lunchRouter.get("/", async (request, result) => {
     try {
-        const lunches = await LunchM.find();
+        const {userId} = request.body;
+        const lunches = await LunchM.find({userId});
         return result.status(200).send(lunches)
     } catch (err) {
         return result.status(400).send({message: err});
     }
 });
 
-lunchRouter.patch("/:idLunch", async (request, result) => {
+lunchRouter.patch("/:lunchId", async (request, result) => {
     try {
-        const {idLunch} = request.params;
+        const {lunchId} = request.params;
         const body = request.body
-        await LunchM.deleteOne({ _id: idLunch}, {$set: body})
+        const {userId} = request.body;
+        await LunchM.deleteOne({_id: lunchId, userId: userId}, {$set: body})
         return result.status(200).send({message: "Lunch Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});
     }
 });
 
-lunchRouter.patch("/:idLunch", async (request, result) => {
+lunchRouter.patch("/:lunchId", async (request, result) => {
     try {
-        const {idLunch} = request.params;
-        await LunchM.deleteOne({ _id: idLunch})
+        const {lunchId} = request.params;
+        const {userId} = request.body;
+        await LunchM.deleteOne({_id: lunchId, userId: userId})
         return result.status(200).send({message: "Lunch Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});

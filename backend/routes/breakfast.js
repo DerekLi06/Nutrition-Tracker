@@ -6,7 +6,8 @@ const BreakfastM = require("../models/BreakfastM");
 breakfastRouter.post("/create", async (request, result) => {
     try {
         const data = request.body;
-        const breakfast = new BreakfastM(data);
+        const {userId} = request.body;
+        const breakfast = new BreakfastM(...data, userId);
         await breakfast.save();
         return result.status(200).send({message: "Breakfast Item Saved to Database!"});
     } catch (err) {
@@ -16,28 +17,31 @@ breakfastRouter.post("/create", async (request, result) => {
 
 breakfastRouter.get("/", async (request, result) => {
     try {
-        const breakfasts = await BreakfastM.find();
+        const {userId} = request.body;
+        const breakfasts = await BreakfastM.find({userId});
         return result.status(200).send(breakfasts)
     } catch (err) {
         return result.status(400).send({message: err});
     }
 });
 
-breakfastRouter.patch("/:idBreakfast", async (request, result) => {
+breakfastRouter.patch("/:breakfastId", async (request, result) => {
     try {
-        const {idBreakfast} = request.params;
+        const {breakfastId} = request.params;
         const body = request.body
-        await BreakfastM.deleteOne({ _id: idBreakfast}, {$set: body})
+        const {userId} = request.body;
+        await BreakfastM.deleteOne({_id: breakfastId, userId: userId}, {$set: body})
         return result.status(200).send({message: "Breakfast Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});
     }
 });
 
-breakfastRouter.patch("/:idBreakfast", async (request, result) => {
+breakfastRouter.patch("/:breakfastId", async (request, result) => {
     try {
-        const {idBreakfast} = request.params;
-        await BreakfastM.deleteOne({ _id: idBreakfast})
+        const {breakfastId} = request.params;
+        const {userId} = request.body;
+        await BreakfastM.deleteOne({_id: breakfastId, userId: userId})
         return result.status(200).send({message: "Breakfast Updated!"});
     } catch (err) {
         return result.status(400).send({message: err});

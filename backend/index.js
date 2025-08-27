@@ -7,6 +7,7 @@ const passport = require("passport");
 const cors = require("cors");
 
 const connection = require("./config/database");
+const userAuthentication = require("./config/authMiddleware");
 const foodRouter = require("./routes/food");
 const breakfastRouter = require("./routes/breakfast");
 const lunchRouter = require("./routes/lunch");
@@ -86,6 +87,7 @@ app.get("/logout", (req, res) => {
 
 app.use("/auth", authenticationRouter);
 app.use("/foods", foodRouter);
+app.use(userAuthentication);
 app.use("/breakfast", breakfastRouter);
 app.use("/lunch", lunchRouter);
 app.use("/snack", snackRouter);
