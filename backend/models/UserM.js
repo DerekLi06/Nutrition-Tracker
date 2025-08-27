@@ -13,7 +13,7 @@ const UserMSchema = new Schema(
         country: {type: String},
         zipcode: {type: String},
         weightGoal: {type: String},
-        maintenceCalories: {type: String}
+        maintenanceCalories: {type: String}
     }
 )
 
