@@ -1,1 +1,20 @@
-# Nutrition-Tracker
+# Nutrition Analytics
+
+Nutrition Analytics is a web-based application that will allow users to track their daily macronutrients and their progress towards their nutritional goals.
+
+## Tech Stack
+
+- Javascript
+- Node.js
+- Express.js
+- React.js
+- MongoDB Atlas
+- Redux
+- Google Cloud Oauth 2.0
+
+## Features
+
+- Users can sign up with their email addresses, with their sessions being verified by JWT Authentication and their passwords being protected with Bcrypt hashing.
+- Users can add create their own meals and add them to a collective database hosted on MongoDB Atlas for all users to share.
+- Users can add different food items to meals sections on the webpage, tracking the macronutrients they consume during each meal and collectively throughout the day.
+- Users only have access to modifying their own meals and track their own nutrition consumption, except for the food items created which are collectively shared.
