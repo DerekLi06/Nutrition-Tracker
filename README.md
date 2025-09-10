@@ -30,5 +30,5 @@ Nutrition Analytics is a web-based application that will allow users to track th
     - Requires email and password for authentication
     - Returns JWT with 24 expiration time
 
-- `POST /auth/logout` - Invalidat4es JWT token
+- `POST /auth/logout` - Invalidates JWT token
     - Blacklists current JWT token
