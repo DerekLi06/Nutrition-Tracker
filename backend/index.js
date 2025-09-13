@@ -47,12 +47,23 @@ app.get(
 app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-        successRedirect: process.env.CLIENT_URL,
         failureRedirect: "/auth/google/failure",
     }),
-    // (req, res) => {
-    //     res.redirect("/profile");
-    // }
+    async (req, res) => {
+        const jwt = require("jsonwebtoken");
+        const UserM = require("./models/UserM");
+        
+        // Find user in database by email
+        const user = await UserM.findOne({ email: req.user.emails[0].value });
+        if (!user) {
+            return res.redirect("/auth/google/failure");
+        }
+        
+        const token = jwt.sign({
+            userId: user._id
+        }, process.env.JWT_SECRET, {expiresIn: "24h"});
+        res.redirect(`${process.env.CLIENT_URL}/homepage?token=${token}`);
+    }
 );
 
 app.get("/profile", (req, res) => {
@@ -87,11 +98,10 @@ app.get("/logout", (req, res) => {
 
 app.use("/auth", authenticationRouter);
 app.use("/foods", foodRouter);
-app.use(userAuthentication);
-app.use("/breakfast", breakfastRouter);
-app.use("/lunch", lunchRouter);
-app.use("/snack", snackRouter);
-app.use("/dinner", dinnerRouter);
+app.use("/breakfast", userAuthentication, breakfastRouter);
+app.use("/lunch", userAuthentication, lunchRouter);
+app.use("/snack", userAuthentication, snackRouter);
+app.use("/dinner", userAuthentication, dinnerRouter);
 
 app.listen(5000, async () => {
     try {

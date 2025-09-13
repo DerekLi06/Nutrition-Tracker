@@ -6,7 +6,7 @@ import {reducer as appReducer} from "./reducer"
 
 const rootReducer = combineReducers({
 	register: registrationReducer,
-	login: authenticationReducer,
+	auth: authenticationReducer,
   	appReducer
 });
 

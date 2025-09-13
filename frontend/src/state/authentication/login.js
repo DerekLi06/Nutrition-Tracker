@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../utils/axiosConfig";
 import {LOGIN_FAILURE, LOGIN_LOADING, LOGIN_SUCCESS, LOGOUT} from "./loginTypes";
 
 export const loginAPI = (creds) => async (dispatch) => {
@@ -14,7 +14,7 @@ export const loginAPI = (creds) => async (dispatch) => {
     };
 
     try {
-        const result = await axios.post(`${import.meta.env.VITE_CLIENT_URL}/auth/login`, data, {headers: headers});
+        const result = await api.post(`${import.meta.env.VITE_CLIENT_URL}/auth/login`, data, {headers: headers});
         return dispatch ({type: LOGIN_SUCCESS, payload: result.data});
     } catch (err) {
         return dispatch({type: LOGIN_FAILURE});

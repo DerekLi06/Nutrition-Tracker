@@ -9,7 +9,7 @@ import "../styling/login.css";
 const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { loading, error } = useSelector((state) => state.auth || { loading: false, error: null })
+  const { loading, error, isAuth} = useSelector((state) => state.auth || { loading: false, error: null, isAuth: false})
     
   const [formData, setFormData] = useState({
     email: "",

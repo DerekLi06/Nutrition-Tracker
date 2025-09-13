@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../utils/axiosConfig";
 import {REGISTER_LOADING, REGISTER_SUCCESS, REGISTER_FAILURE} from "./registerTypes";
 
 export const registerAPI = (creds) => async (dispatch) => {
@@ -24,7 +24,7 @@ export const registerAPI = (creds) => async (dispatch) => {
     };
 
     try {
-        const result = await axios.post(`${import.meta.env.VITE_CLIENT_URL}/auth/register`, data, {headers: headers});
+        const result = await api.post(`${import.meta.env.VITE_CLIENT_URL}/auth/register`, data, {headers: headers});
         dispatch ({type: REGISTER_SUCCESS, payload: result.data});
     } catch (err) {
         dispatch({type: REGISTER_FAILURE});

@@ -20,7 +20,7 @@ passport.use(
                 const newU = new UserM( 
                     {
                         // username: profile.displayName,
-                        email: profile.email,
+                        email: profile.emails[0].value
                     }
                 );
                 await newU.save()

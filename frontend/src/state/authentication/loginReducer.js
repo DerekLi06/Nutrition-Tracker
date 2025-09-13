@@ -1,6 +1,13 @@
 import {LOGIN_FAILURE, LOGIN_LOADING, LOGIN_SUCCESS, LOGOUT} from "./loginTypes";
 
 let token = localStorage.getItem("token");
+if (token){
+	try {
+		token = JSON.parse(token);
+	} catch (err) {
+		token = null;
+	}
+}
 
 const initState = {
 	loading: false,
@@ -16,7 +23,7 @@ const authenticationReducer = (state = initState, {type, payload}) => {
 		};
 		case LOGIN_SUCCESS: {
             alert("Login Successful!")
-			localStorage.setItem("token", JSON.stringify(payload.token))
+			localStorage.setItem("token", payload.token)
 			return {
 				...state,
 				loading: false,
