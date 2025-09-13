@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import { logoutAPI } from "../state/authentication/login"
 import "../styling/homepage.css"
 
 const Homepage = () => {
@@ -36,7 +37,7 @@ const Homepage = () => {
   })
 
   const handleLogout = () => {
-    // Add logout logic here
+    dispatch(logoutAPI())    
     navigate("/")
   }
 
