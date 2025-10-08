@@ -51,25 +51,22 @@ Nutrition Analytics is a web-based application that will allow users to track th
 
 ### Food Database Endpoints
 - `POST /foods/create` - Adds new food item to shared database
-- `GET /foods/ - Searchs for and returns food item from share database
+- `GET /foods/` - Searchs for and returns food item from share database
 
 ### Meal Database Endpoints
-- `POST /breakfast/create`
-- `GET /breakfast/`
-- `PATCH /breakfast/:breakfastId`
-- `PATCH /breakfast/:breakfastId`
+## All endpoints here require JWT Authentication
+- `POST /breakfast/create` - Adds breakfast meal for user
+- `GET /breakfast/` - Retrieves user's breakfast meal
+- `PATCH /breakfast/:breakfastId` - Modifies user's breakfast meal (update/delete)
 
-- `POST /lunch/create`
-- `GET /lunch/`
-- `PATCH /lunch/:lunchId`
-- `PATCH /lunch/:lunchId`
+- `POST /lunch/create` - Adds lunch meal for user
+- `GET /lunch/` - Retrieves user's lunch meal
+- `PATCH /lunch/:lunchId` - Modifies user's lunch meal (update/delete)
 
-- `POST /dinner/create`
-- `GET /dinner/`
-- `PATCH /dinner/:dinnerId`
-- `PATCH /dinner/:dinnerId`
+- `POST /dinner/create` - Adds dinner meal for user
+- `GET /dinner/` - Retrieves user's dinner meal
+- `PATCH /dinner/:dinnerId` - Modifies user's dinner meal (update/delete)
   
-- `POST /snack/create`
-- `GET /snack/`
-- `PATCH /snack/:snackId`
-- `PATCH /snack/:snackId`
+- `POST /snack/create` - Adds snack meal for user
+- `GET /snack/` - Retrieves user's snack meal
+- `PATCH /snack/:snackId` - Modifies user's snack meal (update/delete)
