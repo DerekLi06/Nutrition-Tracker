@@ -54,7 +54,7 @@ Nutrition Analytics is a web-based application that will allow users to track th
 - `GET /foods/` - Searchs for and returns food item from share database
 
 ### Meal Database Endpoints
-## All endpoints here require JWT Authentication
+#### All endpoints here require JWT Authentication
 - `POST /breakfast/create` - Adds breakfast meal for user
 - `GET /breakfast/` - Retrieves user's breakfast meal
 - `PATCH /breakfast/:breakfastId` - Modifies user's breakfast meal (update/delete)
