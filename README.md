@@ -66,7 +66,7 @@ Nutrition Analytics is a web-based application that will allow users to track th
 - `GET /dinner/`
 - `PATCH /dinner/:dinnerId`
 - `PATCH /dinner/:dinnerId`
-- 
+  
 - `POST /snack/create`
 - `GET /snack/`
 - `PATCH /snack/:snackId`
