@@ -32,3 +32,21 @@ Nutrition Analytics is a web-based application that will allow users to track th
 
 - `POST /auth/logout` - Invalidates JWT token
     - Blacklists current JWT token
+
+### Google OAuth Endpoints
+- `GET /auth/google` - Initiates Google OAuth login
+    - Redirects user to Google OAuth login page
+    - Prompts user for login details
+
+- `GET /auth/google/callback` - Handles Google OAuth callback
+    - Redirects user to frontend with new JWT token
+- 
+- `GET /auth/google/failure` - Handles failure to login
+    - Returns login failed
+- 
+- `GET /logout` - Logs user out of session
+    - End user token session and redirects user back to home page
+
+### Food Database Endpoints
+
+### Meal Database Endpoints
