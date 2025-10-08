@@ -40,13 +40,34 @@ Nutrition Analytics is a web-based application that will allow users to track th
 
 - `GET /auth/google/callback` - Handles Google OAuth callback
     - Redirects user to frontend with new JWT token
-- 
+
 - `GET /auth/google/failure` - Handles failure to login
     - Returns login failed
-- 
+
 - `GET /logout` - Logs user out of session
     - End user token session and redirects user back to home page
 
 ### Food Database Endpoints
+- `POST /foods/create` - Adds new food item to shared database
+- `GET /foods/ - Searchs for and returns food item from share database
 
 ### Meal Database Endpoints
+- `POST /breakfast/create`
+- `GET /breakfast/`
+- `PATCH /breakfast/:breakfastId`
+- `PATCH /breakfast/:breakfastId`
+
+- `POST /lunch/create`
+- `GET /lunch/`
+- `PATCH /lunch/:lunchId`
+- `PATCH /lunch/:lunchId`
+
+- `POST /dinner/create`
+- `GET /dinner/`
+- `PATCH /dinner/:dinnerId`
+- `PATCH /dinner/:dinnerId`
+- 
+- `POST /snack/create`
+- `GET /snack/`
+- `PATCH /snack/:snackId`
+- `PATCH /snack/:snackId`
