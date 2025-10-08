@@ -14,6 +14,8 @@ Nutrition Analytics is a web-based application that will allow users to track th
 
 ## Features
 
+![](frontend/frontpage.png)
+
 - Users can sign up with their email addresses, with their sessions being verified by JWT Authentication and their passwords being protected with Bcrypt hashing.
 - Users can add create their own meals and add them to a collective database hosted on MongoDB Atlas for all users to share.
 - Users can add different food items to meals sections on the webpage, tracking the macronutrients they consume during each meal and collectively throughout the day.
